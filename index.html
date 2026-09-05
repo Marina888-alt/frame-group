@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="https://flatshop.mydomio.ru/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#C8102E">
+    <title>ReForm</title>
+    <meta name="description" content="Агентство недвижимости полного цикла с гарантией результата">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU" type="text/javascript"></script>
+
+    <!-- Мгновенное применение фирменного цвета из кэша — до первого рендера (нет мигания) -->
+    <script>
+      (function () {
+        try {
+          var hex = localStorage.getItem('brand_color')
+          if (!hex || !/^#[0-9a-f]{6}$/i.test(hex)) return
+          var r = parseInt(hex.slice(1, 3), 16)
+          var g = parseInt(hex.slice(3, 5), 16)
+          var b = parseInt(hex.slice(5, 7), 16)
+          var mix = function (base, target, ratio) {
+            return {
+              r: Math.round(base.r + (target.r - base.r) * ratio),
+              g: Math.round(base.g + (target.g - base.g) * ratio),
+              b: Math.round(base.b + (target.b - base.b) * ratio)
+            }
+          }
+          var c = { r: r, g: g, b: b }
+          var w = { r: 255, g: 255, b: 255 }
+          var k = { r: 0,   g: 0,   b: 0   }
+          var shades = {
+            50:  mix(c, w, 0.95), 100: mix(c, w, 0.88), 200: mix(c, w, 0.75),
+            300: mix(c, w, 0.58), 400: mix(c, w, 0.35), 500: mix(c, w, 0.15),
+            600: mix(c, k, 0.08), 700: c,               800: mix(c, k, 0.20),
+            900: mix(c, k, 0.35), 950: mix(c, k, 0.70)
+          }
+          var root = document.documentElement
+          for (var shade in shades) {
+            var s = shades[shade]
+            root.style.setProperty('--brand-' + shade, s.r + ' ' + s.g + ' ' + s.b)
+          }
+        } catch (e) {}
+        // Тёмные поверхности (подвал, плашки, секции) — тот же приём, что и
+        // для brand: применяем закэшированный dark_color до первого рендера.
+        try {
+          var ink = localStorage.getItem('ink_color')
+          if (!ink || !/^#[0-9a-f]{6}$/i.test(ink)) return
+          var ir = parseInt(ink.slice(1, 3), 16)
+          var ig = parseInt(ink.slice(3, 5), 16)
+          var ib = parseInt(ink.slice(5, 7), 16)
+          var l = function (v, t, k) { return Math.round(v + (t - v) * k) }
+          var root2 = document.documentElement
+          root2.style.setProperty('--ink-800', l(ir,255,0.10) + ' ' + l(ig,255,0.10) + ' ' + l(ib,255,0.10))
+          root2.style.setProperty('--ink-900', ir + ' ' + ig + ' ' + ib)
+          root2.style.setProperty('--ink-950', l(ir,0,0.60) + ' ' + l(ig,0,0.60) + ' ' + l(ib,0,0.60))
+        } catch (e) {}
+      })()
+    </script>
+    <script type="module" crossorigin src="assets/index-ylKaezqS.js"></script>
+    <link rel="stylesheet" crossorigin href="assets/index-l17YeJAO.css">
+  
+    <style data-brand-ssr>:root{--brand-50:252 243 245;--brand-100:248 226 230;--brand-200:241 195 203;--brand-300:232 155 167;--brand-400:219 100 119;--brand-500:208 52 77;--brand-600:184 15 42;--brand-700:200 16 46;--brand-800:160 13 37;--brand-900:130 10 30;--brand-950:60 5 14;}</style>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flatshop.mydomio.ru/">
+    <meta property="og:title" content="ReForm">
+    <meta property="og:site_name" content="ReForm">
+    <meta property="og:description" content="Агентство недвижимости полного цикла с гарантией результата">
+    <meta property="og:image" content="https://flatshop.mydomio.ru/storage/seo/01KQSB7Z459WCWMBXKE8VCJNKS.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ReForm">
+    <meta name="twitter:description" content="Агентство недвижимости полного цикла с гарантией результата">
+    <meta name="twitter:image" content="https://flatshop.mydomio.ru/storage/seo/01KQSB7Z459WCWMBXKE8VCJNKS.jpeg">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
